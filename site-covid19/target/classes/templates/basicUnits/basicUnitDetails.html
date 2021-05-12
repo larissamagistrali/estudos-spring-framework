@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'basicunits')}">
+
+<body>
+
+
+	<h2 th:text="#{basicUnitInformation}">Basic Unit Information</h2>
+
+
+	<table class="table table-striped" th:object="${basicUnit}">
+		<tr>
+			<th th:text="#{name}">Name</th>
+			<td><b th:text="*{name}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{address}">Address</th>
+			<td>
+			<b th:text="*{street}"> </b> - <b th:text="*{number}"></b>,
+			<b th:text="*{city}"></b>,
+			<b th:text="*{zipCode}"></b>,
+			<b th:text="*{state}"></b>,
+			<b th:text="*{country}"></b>
+			</td>
+		</tr>
+		<tr>
+			<th th:text="#{telephone}">Telephone</th>
+			<td><b th:text="*{telephone}"></b></td>
+		</tr>
+		<tr>
+			<th>Opening Hours</th>
+			<td><b th:text="*{openingTime}"></b> <b th:text="#{at}"></b> <b th:text="*{closingTime}"></b></td>
+		</tr>
+	</table>
+
+	<a th:href="@{{id}/edit(id=${basicUnit.id})}" class="btn btn-default" th:text="#{editBasicUnit}">Edit Basic Unit</a>
+
+</body>
+
+</html>

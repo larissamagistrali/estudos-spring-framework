@@ -1,0 +1,30 @@
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'medicalAppointments')}">
+<meta charset="utf-8"/>
+<body>
+
+	<h2>Informações da Consulta e Exame </h2>
+	<form th:object="${medicalAppointment}" class="form-horizontal" id="add-medical-appointment-form" method="post">
+		<div class="form-group has-feedback">
+		
+			<input th:replace="~{fragments/selectField :: select('Unidade Básica', 'basicUnit', ${allBasicUnits})}" />
+			<input th:replace="~{fragments/selectField :: select('Paciente', 'patient', ${allPatients})}" />
+			<input th:replace="~{fragments/selectField :: select('Funcionário', 'functionary', ${allFunctionaries})}" />
+			
+			<input th:replace="~{fragments/inputField :: input ('Data', 'dateMedicalAppointment', 'date')}" />
+			<input th:replace="~{fragments/inputField :: input ('Horário de início', 'startTime', 'text')}" />
+			<input th:replace="~{fragments/inputField :: input ('Horário de término', 'endTime', 'text')}" />
+			<input th:replace="~{fragments/inputField :: input ('Descrição', 'description', 'text')}" />
+			<input th:replace="~{fragments/inputField :: input ('Resultado do teste para COVID-19', 'testResult', 'text')}" />		 
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button
+					th:with="text=${medicalAppointment['new']} ? 'Add Medical Appointments' : 'Update Medical Appointments'"
+					class="btn btn-default" type="submit">Adicionar Consulta</button>
+			</div>
+		</div>
+	</form>
+	
+</body>
+</html>

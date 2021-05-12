@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+
+	<img class="img-responsive" src="../static/resources/images/banner.jpg" th:src="@{/resources/images/banner.jpg}" 
+						style="max-width:100%; display: block; margin-left: auto; margin-right: auto;">
+	
+	<br><br>
+	<div class="container">
+		<h2 align="center">Nº de óbitos confirmados para a COVID-19</h2>
+
+		<div id="container"
+			style="width: 550px; height: 400px; margin: 0 auto"></div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script th:inline="javascript">
+    $(function(){
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Resultados das unidades básicas'
+        },
+        xAxis: {
+            categories: [[${surveyMap.keySet()}]],
+            crosshair: true,
+            title: {
+                text: 'Número de identificação da unidade'
+            }
+        },
+        yAxis: {
+            min: 0,
+            max:10,
+            title: {
+                text: 'Número de óbitos por unidade'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Unidades Básicas',
+            data: [[${surveyMap.values()}]]
+        }]
+    });
+    });
+</script>
+	</br>
+	<h2 th:text="#{basicUnits}">Basic Units</h2>
+
+	<table id="basicUnits" class="table table-striped">
+		<thead>
+			<tr>
+				<th th:text="#{idNumber}" style="width: 150px;">Identification
+					Number</th>
+				<th th:text="#{name}" style="width: 150px;">Name</th>
+				<th th:text="#{numCases}" style="width: 200px;">Nº Cases</th>
+				<th th:text="#{numDeath}" style="width: 120px">Nº Death</th>
+				<th th:text="#{lethalityRate}" style="width: 200px;">Lethality
+					Rate</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bu :  ${basicUnits}">
+				<td><a th:href="@{/basicUnits/__${bu.id}__}" th:text="${bu.id}" /></a></td>
+				<td th:text="${bu.name}" />
+				<td th:with="numCase=${numCaseBasicUnit[bu.id]}"><span th:text="${numCase}"></td>
+				<td th:with="numDeath=${numDeathBasicUnit[bu.id]}"><span th:text="${numDeath}"></td>
+				<td th:with="lethalityRate=${lethalityRate[bu.id]}"><span th:text="${lethalityRate}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

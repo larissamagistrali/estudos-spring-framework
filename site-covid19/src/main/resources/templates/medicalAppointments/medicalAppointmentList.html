@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'medicalAppointments')}">
+
+  <body>
+
+    <h2 th:text="#{medicalAppointmentsAndResults}">Medical appointments and COVID-19 test results</h2>
+
+    <table id="medicalAppointments" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;" th:text="#{date}">Date</th>
+           	<th style="width: 200px;" th:text="#{patient}">Patient</th> 
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="medicalAppointment : ${selections}">
+              <td>
+                  <a th:href="@{/medicalAppointments/__${medicalAppointment.id}__}" th:text="${medicalAppointment.dateMedicalAppointment}"/></a>
+              </td>
+              <td th:text="${medicalAppointment.patient.name}"/>
+
+          </tr>
+        </tbody>
+    </table>
+
+  </body>
+</html>

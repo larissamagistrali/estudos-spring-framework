@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'medicalAppointments')}">
+
+<body>
+	<h2 th:text="#{medicalAppointmentAndResult}">Medical appointment information and COVID-19 test result</h2>
+
+	<thead><h3 th:text="#{patient}">Patient</h3></thead>
+	
+	<table class="table table-striped" th:object="${patient}">
+		<tr>
+			<th style="width: 450px;" th:text="#{name}">Name</th>
+			<td><b th:text="*{name}"></b></td>
+		</tr>
+		<tr>
+			<th style="width: 450px;">Cpf</th>
+			<td><b th:text="*{cpf}"></b></td>
+		</tr>
+	</table>
+	<h3 th:text="#{functionary}">Functionary</h3>
+	<table class="table table-striped" th:object="${functionary}">
+		<tr>
+			<th style="width: 450px;" th:text="#{name}">Name</th>
+			<td><b th:text="*{name}"></b></td>
+		</tr>
+		<tr>
+			<th style="width: 450px;" th:text="#{function}">Function</th>
+			<td><b th:text="*{function}"></b></td>
+		</tr>
+	</table>
+	<h3 th:text="#{medicalAppointment}">Medical Appointment</h3>
+	<table class="table table-striped" th:object="${medicalAppointments}">
+		<tr>
+			<th style="width: 450px;" th:text="#{date}">Date</th>
+			<td><b th:text="*{dateMedicalAppointment}"></b></td>
+		</tr>
+		<tr>
+			<th style="width: 450px;" th:text="#{description}">Description</th>
+			<td><b th:text="*{description}"></b></td>
+		</tr>
+		<tr>
+			<th style="width: 450px;" th:text="#{testResult}">Result</th>
+			<td><b th:text="*{testResult}"></b></td>
+		</tr>
+	</table>
+	
+	<a th:href="@{{id}/edit(id=${medicalAppointments.id})}"  class="btn btn-default">Editar Consulta</a>
+
+
+</body>
+
+</html>

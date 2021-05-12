@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'reports')}">
+
+<body>
+
+	<h2 th:text="#{weekReport}">Weekly Report</h2>
+
+	<table id="reports" class="table table-striped">
+		<thead>
+			<tr>
+				<th style="width: 150px;" th:text="#{basicUnits}">Basic Units</th>
+				<th style="width: 150px;" th:text="#{numMedicalAppointments}">Number of Medical Appointments</th>
+				<th style="width: 150px;" th:text="#{minimumServiceTime}">Minimum Service Time</th>
+				<th style="width: 150px;" th:text="#{averageServiceTime}">Average Service Time</th>
+				<th style="width: 150px;" th:text="#{maximumServiceTime}">Maximum Service Time</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bu :  ${basicUnits}">	
+				<td><a th:href="@{/basicUnits/__${bu.id}__}" th:text="${bu.name}" /></a></td>
+				<td th:with="numCase=${numCaseBasicUnitWeek[bu.id]}"><span th:text="${numCase}"></td>
+				<td th:with="minimumServiceTime=${timeMinimunBasicUnitWeek[bu.id]}"><span th:text="${minimumServiceTime}"> </span> min</td>
+				<td th:with="averageServiceTime=${calcTimeAverageBasicUnitWeek[bu.id]}"><span th:text="${averageServiceTime}"> </span> min</td>
+				<td th:with="maximumServiceTime=${timeMaxumunBasicUnitWeek[bu.id]}"><span th:text="${maximumServiceTime}"> </span> min</td>
+						
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'basicunits')}">
+	
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+
+	<h2 th:text="#{basicUnit}">Basic Unit</h2>
+	<form th:object="${basicUnit}" class="form-horizontal"
+		id="add-unidadeBasica-form" method="post">
+		<div class="form-group has-feedback">
+			<input
+				th:replace="~{fragments/inputField :: input ('Nome', 'name', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Telefone', 'telephone', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Logradouro', 'street', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Número', 'number', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Cidade', 'city', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('CEP', 'zipCode', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Estado', 'state', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('País', 'country', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Horário de Abertura', 'openingTime', 'text')}" />
+			<input
+				th:replace="~{fragments/inputField :: input ('Horário de Fechamento', 'closingTime', 'text')}" />
+		
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button
+					th:with="text=${basicUnit['new']} ? 'Add Basic Unit' : 'Update Basic Unit'"
+					class="btn btn-default" type="submit" th:text="#{addBasicUnit}">Add
+					Basic Unit</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

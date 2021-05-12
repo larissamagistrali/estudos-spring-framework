@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'basicUnits')}">
+
+<body>
+
+	<h2 th:text="#{basicUnits}">Basic Units</h2>
+
+	<table id="basicUnits" class="table table-striped">
+		<thead>
+			<tr>
+				<th th:text="#{name}" style="width: 150px;">Name</th>
+				<th th:text="#{city}" style="width: 150px;">City</th>
+				<th th:text="#{state}" style="width: 150px;">State</th>
+				<th th:text="#{country}" style="width: 150px;">Country</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="bu :  ${basicUnits}">
+				<td><a th:href="@{/basicUnits/__${bu.id}__}" th:text="${bu.name}" /></a></td>
+				<td th:text="${bu.city}" />
+				<td th:text="${bu.state}" />
+				<td th:text="${bu.country}" />				
+			</tr>
+		</tbody>
+
+	</table>
+	<a class="btn btn-default" th:href="@{/basicUnits/new}" th:text="#{addBasicUnit}">Add Basic Unit</a>
+</body>
+</html>

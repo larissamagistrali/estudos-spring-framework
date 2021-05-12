@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'patients')}">
+
+<body>
+
+
+	<h2 th:text="#{patient}">Patient Information</h2>
+
+
+	<table class="table table-striped" th:object="${patients}">
+		<tr>
+			<th th:text="#{name}">Name</th>
+			<td><b th:text="*{name}"></b></td>
+		</tr>
+		<tr>
+			<th>Cpf</th>
+			<td><b th:text="*{cpf}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{dateBirth}">Date of Birth</th>
+			<td><b th:text="*{dateBirth}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{dateDeath}">Date of Death</th>
+			<td><b th:text="*{dateDeath}"></b></td>
+		</tr>
+		
+		<tr>
+			<th th:text="#{telephone}">Telephone</th>
+			<td><b th:text="*{telephone}"></b></td>
+		</tr>
+
+	</table>
+
+	<a th:href="@{{id}/edit(id=${patients.id})}" class="btn btn-default" th:text="#{editPatient}" >Edit Patient</a>
+	
+	<br><br><br>
+	<h2 th:text="#{medicalAppointmentsAndResults}">Medical appointments and COVID-19 test results</h2>
+	<table class="table table-striped">  
+      <tr>
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tr th:each="medicalAppointment : ${medicalAppointments}">
+              <td>
+              	<a  th:href="@{/medicalAppointments/__${medicalAppointment.id}__}" th:text="${medicalAppointment.dateMedicalAppointment}"></a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <br/><br/>
+              <a  th:href="@{/medicalAppointments/new}" class="btn btn-default" th:text="#{addMedicalAppointment}" > Add Medical Appointment</a></td>
+            </tr> 
+          </table>
+        </td>
+      </tr>  
+    </table>	
+	
+</body>
+
+</html>

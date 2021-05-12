@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{fragments/layout :: layout (~{::body},'functionaries')}">
+
+<body>
+
+
+	<h2 th:text="#{functionary}">Functionary Information</h2>
+
+
+	<table class="table table-striped" th:object="${functionaries}">
+		<tr>
+			<th th:text="#{name}">Name</th>
+			<td><b th:text="*{name}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{dateBirth}">Date of Birth</th>
+			<td><b th:text="*{dateBirth}"></b></td>
+		</tr>
+		<tr>
+			<th>Cpf</th>
+			<td><b th:text="*{cpf}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{telephone}">Telephone</th>
+			<td><b th:text="*{telephone}"></b></td>
+		</tr>
+		<tr>
+			<th th:text="#{function}">Function</th>
+			<td><b th:text="*{function}"></b></td>
+		</tr>
+
+	</table>
+
+	<a th:href="@{{id}/edit(id=${functionaries.id})}" th:text="#{editFunctionary}" class="btn btn-default">Edit Functionary</a>
+
+	
+</body>
+
+</html>
