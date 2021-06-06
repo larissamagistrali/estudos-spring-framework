@@ -18,7 +18,7 @@
 <img width="70%" src="site-covid19/src/main/resources/static/resources/images/funcionario.png">
 
 ### Atendimentos médicos
-<img width="70%" src="src/main/resources/static/resources/images/consulta.png">
+<img width="70%" src="site-covid19/src/main/resources/static/resources/images/consulta.png">
 
 ### Relatório semanal
 <img width="70%" src="site-covid19/src/main/resources/static/resources/images/relatorio.png">
